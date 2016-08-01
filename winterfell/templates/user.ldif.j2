@@ -1,0 +1,17 @@
+dn: uid={{ username }},ou=People,dc=weiyu,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: {{ username }}
+sn: {{ username }}
+givenName: {{ username }}
+displayName: {{ username }}
+uid: {{ username }}
+uidNumber: 10019
+gidNumber: 5002
+homeDirectory: /home/{{ username }}
+loginShell: /bin/bash
+gecos: {{ username }}
+userPassword: {SASL}{{ username }}@ci
+description: User account
+mail: {{ username }}@gmail.com
