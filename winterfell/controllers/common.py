@@ -1,9 +1,12 @@
 import re
+import logging
 import subprocess
+
+LOG = logging.getLogger(__name__)
 
 
 def check_call(command):
-    print command
+    LOG.debug('run shell command "%s"' % command)
     p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,
                          stderr=subprocess.STDOUT)
     p.wait()

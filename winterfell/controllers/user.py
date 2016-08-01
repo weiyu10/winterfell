@@ -37,17 +37,22 @@ class UserController(RestController):
 
 
 def delete_user(username):
+    if validate_user(username):
+        delete_system_user(username)
     try:
-        if validate_user(username):
-            delete_system_user(username)
         delete_ldap_user(username)
     except:
-        raise exception.DeleteUserFail(username=username)
+        raise exception.DeleteUserFail(username=username,
+                                       step='ldap')
 
 
 def delete_system_user(username):
     system_delete_cmd = "userdel %s -r" % username
-    check_call(system_delete_cmd)
+    try:
+        check_call(system_delete_cmd)
+    except:
+        raise exception.DeleteUserFail(username=username,
+                                       step='system')
 
 
 def delete_ldap_user(username):

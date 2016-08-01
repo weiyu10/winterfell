@@ -15,7 +15,7 @@ class FunctionalTest(TestCase):
     def setUp(self):
         self.app = load_test_app(os.path.join(
             os.path.dirname(__file__),
-            'config.py'
+            '../../config.py'
         ))
 
     def tearDown(self):

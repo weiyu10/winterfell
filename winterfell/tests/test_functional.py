@@ -8,11 +8,11 @@ class TestUserController(FunctionalTest):
         response = self.app.get('/user')
         assert response.status_int == 200
 
-    def test_create_user(self):
-        # response = self.app.post('/user', params={'username': 'test_user'})
-        response = self.app.post('/user/test_user')
-        assert response.status_int == 201
+    def test_create_and_delete_user(self):
+        # create user
+        create_result = self.app.post('/user/test_user')
+        assert create_result.status_int == 201
 
-    def test_delete_user(self):
-        response = self.app.delete('/user/test_user')
-        assert response.status_int == 204
+        # delete user
+        delete_result = self.app.delete('/user/test_user')
+        assert delete_result.status_int == 204

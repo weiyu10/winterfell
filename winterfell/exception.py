@@ -64,4 +64,4 @@ class CreateUserFail(WinterfellException):
 
 class DeleteUserFail(WinterfellException):
     code = 400
-    msg_fmt = _("Delete user %(username)s failed")
+    msg_fmt = _("Delete user %(username)s failed, failed step is %(step)s")
