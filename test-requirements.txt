@@ -4,3 +4,4 @@ six
 oslo.i18n
 os-testr
 Jinja2
+python-subunit

@@ -1,5 +1,6 @@
 from pecan import make_app
 from winterfell import model
+from winterfell import hooks
 
 
 def setup_app(config):
@@ -9,6 +10,9 @@ def setup_app(config):
 
     return make_app(
         app_conf.pop('root'),
+        hooks=[hooks.AuthHook(),
+               hooks.ExceptionHook()
+               ],
         logging=getattr(config, 'logging', {}),
         **app_conf
     )

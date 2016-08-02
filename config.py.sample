@@ -63,6 +63,8 @@ ldap_admin_dc = ''
 ldap_admin_password = ''
 ldap_people_ou = ''
 
+# admin token, all http request must have a X-Auth-Token
+admin_token = ''
 #
 # All configurations are accessible at::
 # pecan.conf
