@@ -15,8 +15,10 @@ logger = logging.getLogger(__name__)
 class UserController(RestController):
 
     @expose('json')
-    def get(self):
-        return 'test'
+    def get_one(self, username):
+        if not validate_user(username):
+            raise exception.UserIsExist(username=username)
+        return get_user_info(username)
 
     @expose('json')
     def post(self, username, password=''):
@@ -34,6 +36,19 @@ class UserController(RestController):
         delete_user(username)
         response.status = 204
         return 'delete user %s success' % username
+
+
+def get_user_info(username):
+    user_info = {'username': username}
+
+    # Get google authenticator key
+    google_auth_path = '/home/%s/.google_authenticator' % username
+    with open(google_auth_path, 'r') as auth_file:
+        google_auth_key = auth_file.readline()[:-1]
+
+    user_info['google_auth_key'] = google_auth_key
+
+    return user_info
 
 
 def delete_user(username):
