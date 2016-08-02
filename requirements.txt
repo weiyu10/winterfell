@@ -2,3 +2,4 @@ pecan
 six
 oslo.i18n
 pbr
+watchdog
