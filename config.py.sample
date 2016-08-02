@@ -32,6 +32,12 @@ logging = {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'color'
+        },
+        'logfile': {
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/winterfell.log',
+            'level': 'INFO',
+            'formatter': 'simple'
         }
     },
     'formatters': {
