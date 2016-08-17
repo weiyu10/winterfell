@@ -6,7 +6,6 @@ from pecan.hooks import PecanHook
 from winterfell.exception import WinterfellException
 
 LOG = logging.getLogger(__name__)
-admin_token = CONF.admin_token
 
 
 class ExceptionHook(PecanHook):
@@ -22,6 +21,7 @@ class AuthHook(PecanHook):
     def before(self, state):
         request = state.request
         user_token = request.headers.get('X-Auth-Token')
+        admin_token = CONF.admin_token
         if user_token == admin_token:
             LOG.info('RBAC: Bypassing authentication')
             request.is_admin = True
