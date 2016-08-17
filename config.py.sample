@@ -65,9 +65,11 @@ ldif_path = '/root/ldap'
 
 fatal_exception_format_errors = False
 
+ldap_server_url = ''
 ldap_admin_dc = ''
 ldap_admin_password = ''
 ldap_people_ou = ''
+ldap_group_ou = ''
 
 # admin token, all http request must have a X-Auth-Token
 admin_token = ''
