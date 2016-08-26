@@ -3,7 +3,7 @@ from pecan import conf as CONF
 from pecan import expose, response
 from pecan.rest import RestController
 from jinja2 import Environment, PackageLoader
-from winterfell.controllers.common import check_call
+from winterfell.controllers.common import check_call, render_ldif
 from winterfell import exception
 
 
@@ -58,11 +58,3 @@ def create_group(name):
 
 def validate_group(name):
     return True
-
-
-def render_ldif(source, target, context):
-    env = Environment(loader=PackageLoader('winterfell', 'templates'))
-    template = env.get_template(source)
-    conf = template.render(context=context)
-    with open(target, 'w') as conf_file:
-        conf_file.write(conf)

@@ -1,0 +1,7 @@
+dn: uid={{ context.name }},{{ context.ldap_people_ou }}
+changetype: modify
+{% for key, value in context.user.items() -%}
+replace: {{ key }}
+{{ key }}: {{ value }}
+-
+{% endfor %}

@@ -1,6 +1,7 @@
 import re
 import logging
 import subprocess
+from jinja2 import Environment, PackageLoader
 
 LOG = logging.getLogger(__name__)
 
@@ -30,3 +31,10 @@ def is_cidr(cidr):
         return True
     else:
         return False
+
+def render_ldif(source, target, context):
+    env = Environment(loader=PackageLoader('winterfell', 'templates'))
+    template = env.get_template(source)
+    conf = template.render(context=context)
+    with open(target, 'w') as conf_file:
+        conf_file.write(conf)
