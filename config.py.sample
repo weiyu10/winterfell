@@ -59,6 +59,7 @@ logging = {
 
 # default password when user not provide password
 user_default_password = ''
+mail_suffix = ''
 
 ldif_path = '/root/ldap'
 

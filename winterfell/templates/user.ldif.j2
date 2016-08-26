@@ -14,4 +14,4 @@ loginShell: /bin/bash
 gecos: {{ username }}
 userPassword: {SASL}{{ username }}@ci
 description: User account
-mail: {{ username }}@polex.com.cn
+mail: {{ username }}{{mail_suffix}}

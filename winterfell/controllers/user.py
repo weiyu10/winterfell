@@ -124,7 +124,7 @@ def validate_user(username):
 def generate_user_ldif_file(username):
     env = Environment(loader=PackageLoader('winterfell', 'templates'))
     template = env.get_template('user.ldif.j2')
-    conf = template.render(username=username, ldap_people_ou=CONF.ldap_people_ou)
+    conf = template.render(username=username, ldap_people_ou=CONF.ldap_people_ou,mail_suffix=CONF.mail_suffix)
     conf_file_name = '%s/%s.ldif' % (CONF.ldif_path, username)
     with open(conf_file_name, 'w') as conf_file:
         conf_file.write(conf)
