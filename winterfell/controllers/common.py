@@ -38,3 +38,4 @@ def render_ldif(source, target, context):
     conf = template.render(context=context)
     with open(target, 'w') as conf_file:
         conf_file.write(conf)
+    return target

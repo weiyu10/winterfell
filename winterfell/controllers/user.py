@@ -21,10 +21,10 @@ class UserController(RestController):
                             'user': kw['user'],
                             'ldap_people_ou': CONF.ldap_people_ou}
             updated_user_ldif = '%s/%s.ldif' % ('/tmp', name)
-            updated_user_ldif_path = render_ldif('ch_user.ldif.j2', updated_user_ldif, ldif_context)
+            render_ldif('ch_user.ldif.j2', updated_user_ldif, ldif_context)
             ldap_update_cmd = "ldapadd -x -D %s -w %s -f %s" \
                               % (CONF.ldap_admin_dc, CONF.ldap_admin_password,
-                                 updated_user_ldif_path)
+                                 updated_user_ldif)
             check_call(ldap_update_cmd)
         except:
             raise exception.UpdateUserFail(name=name, step='ldap')
