@@ -32,6 +32,7 @@ def is_cidr(cidr):
     else:
         return False
 
+
 def render_ldif(source, target, context):
     env = Environment(loader=PackageLoader('winterfell', 'templates'))
     template = env.get_template(source)

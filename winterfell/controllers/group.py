@@ -2,7 +2,6 @@ import logging
 from pecan import conf as CONF
 from pecan import expose, response
 from pecan.rest import RestController
-from jinja2 import Environment, PackageLoader
 from winterfell.controllers.common import check_call, render_ldif
 from winterfell import exception
 
@@ -33,8 +32,8 @@ def delete_group(name):
     try:
         # group info only store on ldap
         ldap_delete_cmd = "ldapdelete -x -D %s -w %s  cn=%s,%s"\
-                      % (CONF.ldap_admin_dc, CONF.ldap_admin_password,
-                         name, CONF.ldap_group_ou)
+            % (CONF.ldap_admin_dc, CONF.ldap_admin_password,
+               name, CONF.ldap_group_ou)
         check_call(ldap_delete_cmd)
     except:
         raise exception.DeleteGroupFail(name=name, step='ldap')
@@ -47,7 +46,8 @@ def create_group(name):
     try:
         ldif_context = {'name': name, 'ldap_group_dc': CONF.ldap_group_dc}
         group_ldif = '%s/%s.ldif' % (CONF.ldif_path, name)
-        group_ldif_path = render_ldif('group.ldif.j2', group_ldif, ldif_context)
+        group_ldif_path = render_ldif('group.ldif.j2', group_ldif,
+                                      ldif_context)
         ldap_create_cmd = "ldapadd -x -D %s -w %s -f %s" \
                           % (CONF.ldap_admin_dc, CONF.ldap_admin_password,
                              group_ldif_path)

@@ -12,7 +12,7 @@ class TestUserController(FunctionalTest):
 
         # Get user info
         user_info = self.app.get('/user/test_user',
-                                headers=self.headers)
+                                 headers=self.headers)
         assert user_info.status_int == 200
         assert 'username' in user_info.namespace
         assert 'google_auth_key' in user_info.namespace
