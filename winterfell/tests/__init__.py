@@ -18,7 +18,19 @@ class FunctionalTest(TestCase):
             os.path.dirname(__file__),
             '../../config.py'
         ))
-        self.headers = {'X-Auth-Token': CONF.admin_token}
+        self.admin_headers = {'X-Auth-Token': CONF.admin_token}
+
+    def get_json(self, uri):
+        return self.app.get(uri, headers=self.admin_headers)
+
+    def post_json(self, uri):
+        return self.app.post(uri, headers=self.admin_headers)
+
+    def put_json(self, uri):
+        return self.app.put(uri, headers=self.admin_headers)
+
+    def delete_json(self, uri):
+        return self.app.put(uri, headers=self.admin_headers)
 
     def tearDown(self):
         set_config({}, overwrite=True)
