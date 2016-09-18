@@ -1,7 +1,7 @@
 pecan
+pbr
 six
 oslo.i18n
-pbr
 watchdog
 python-ldap
 jinja2
