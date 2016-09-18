@@ -1,0 +1,6 @@
+[run]
+branch = True
+source = winterfell
+
+[report]
+ignore_errors = True
